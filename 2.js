@@ -18,12 +18,12 @@ function hi(age) {
 
 // 3
 function max_of_3(a, b, c) {
-    nums = [a, b, c]
-    max_num = 0
-    for (num of nums)
-        if (num > max_num)
-            max_num = num
-    return max_num
+    max = a
+    if (b > max)
+        max = b
+    if (c > max)
+        max = c
+    return max
 }
 
 console.log(max_of_3(1, 2, 3))
