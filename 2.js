@@ -80,9 +80,8 @@ arr = [1, 2, 3]
 console.log(arr[2])
 console.log(arr.length)
 arr.splice(1, 1)
-for (el of arr) {
+for (el of arr)
     console.log(el)
-}
 
 // 2
 countries = ["Russia", "USA"]
