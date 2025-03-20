@@ -82,7 +82,6 @@ function callback() {
   console.log("It is done!");
 }
 
-// a
 console.log('start');
 readConfig('myConfig', () => {
   callback();
@@ -97,37 +96,6 @@ readConfig('myConfig', () => {
     });
   });
 });
-
-// b
-console.log('start');
-
-const tasks = [
-  async () => {
-    await readConfig('myConfig');
-    callback();
-  },
-  async () => {
-    await doQuery('select * from cities');
-    callback();
-  },
-  async () => {
-    await httpGet('http://google.com');
-    callback();
-  },
-  async () => {
-    await readFile('README.md');
-    callback();
-    console.log('end');
-  }
-];
-
-async function runTasks(tasks) {
-  for (const task of tasks) {
-    await task();
-  }
-}
-
-runTasks(tasks);
 
 // 3
 function f1(x, callback) {
