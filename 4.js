@@ -102,45 +102,32 @@ readConfig('myConfig', () => {
 console.log('start');
 
 const tasks = [
-  (next) => {
-    readConfig('myConfig', () => {
-      callback();
-      next();
-    });
+  async () => {
+    await readConfig('myConfig');
+    callback();
   },
-  (next) => {
-    doQuery('select * from cities', () => {
-      callback();
-      next();
-    });
+  async () => {
+    await doQuery('select * from cities');
+    callback();
   },
-  (next) => {
-    httpGet('http://google.com', () => {
-      callback();
-      next();
-    });
+  async () => {
+    await httpGet('http://google.com');
+    callback();
   },
-  (next) => {
-    readFile('README.md', () => {
-      callback();
-      next();
-      console.log('end');
-    });
+  async () => {
+    await readFile('README.md');
+    callback();
+    console.log('end');
   }
 ];
 
-function runTasks(tasks) {
-  let index = 0;
-  function next() {
-    if (index < tasks.length) {
-      tasks[index++](next);
-    }
+async function runTasks(tasks) {
+  for (const task of tasks) {
+    await task();
   }
-  next();
 }
 
 runTasks(tasks);
-
 
 // 3
 function f1(x, callback) {
